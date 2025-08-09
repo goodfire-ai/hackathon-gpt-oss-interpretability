@@ -25,6 +25,7 @@ class TopKSAE(torch.nn.Module):
         self.k = k
 
     def _encode_pre_topk(self, x):
+        x = x * self.norm_constant
         x = x - self.decoder_bias
         x = torch.nn.functional.relu(self.encoder_linear(x))
         return x
